@@ -1,0 +1,411 @@
+using UnityEngine;
+using System.Collections;
+using System.Xml.Serialization;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System;
+
+public enum XmlDataType {
+	DRP, // DropItemsSettings
+	MOB, // EnemiesSettings
+	COS, // ItemCostumesSettings
+	ETC, // ItemEtcsSettings
+	PUZ, // ItemPuzzlePiecesSettings
+	SKS, // ItemSkillStonesSettings
+	WAF, // ItemWarfStonesSettings
+	WPN, // ItemWeaponsSettings
+	WUS, // ItemWeaponStrengthenStonesSettings
+	PUB, // PuzzleBasesSettings	
+}
+
+public enum CurrentLocationInfo {
+	Zone1_1,
+	Zone1_2,
+	Zone1_3,	
+}
+
+//public class GetXmlData : MonoBehaviour {
+public class GetXmlData {
+	public string ResourcePath;
+	public CurrentLocationInfo currentLocationInfo = CurrentLocationInfo.Zone1_1;
+
+	public DropItemsSettingsZone0101 dropItemsSettingsZone0101;
+
+	public EnemiesSettings enemiesSettings;
+
+	public ItemCostumesSettings itemCostumesSettings;
+	public ItemEtcsSettings itemEtcsSettings;
+	public ItemPuzzlePiecesSettings itemPuzzlePiecesSettings;
+	public ItemSkillStonesSettings itemSkillStonesSettings;
+	public ItemWarfStonesSettings itemWarfStonesSettings;
+	public ItemWeaponsSettings itemWeaponsSettings;
+	public ItemWeaponStrengthenStonesSettings itemWeaponStrengthenStonesSettings;
+
+	public PlayerLevelsSettings playerLevelsSettings;
+	public PlayersSettings playersSettings;
+
+	public PuzzleBasesSettings puzzleBasesSettings;
+	public SkillSlotsSettings skillSlotsSettings;
+	public SkillsSettings skillsSettings;
+	public SkillStonesSettings skillStonesSettings;	
+	
+	public GetXmlData ()
+	{
+		ResourcePath = Application.dataPath.ToString() + "/Resources/XmlData/";
+		
+		dropItemsSettingsZone0101 = GetDropItemsSettingsZone0101();
+
+		enemiesSettings = GetEnemiesSettings();
+
+		itemCostumesSettings = GetItemCostumesSettings();
+		itemEtcsSettings = GetItemEtcsSettings();
+		itemPuzzlePiecesSettings = GetItemPuzzlePiecesSettings();
+		itemSkillStonesSettings = GetItemSkillStonesSettings();
+		itemWarfStonesSettings = GetItemWarfStonesSettings();
+		itemWeaponsSettings = GetItemWeaponsSettings();
+		itemWeaponStrengthenStonesSettings = GetItemWeaponStrengthenStonesSettings();
+
+		playerLevelsSettings = GetPlayerLevelsSettings();
+		playersSettings = GetPlayersSettings();
+
+		puzzleBasesSettings = GetPuzzleBasesSettings();
+		skillSlotsSettings = GetSkillSlotsSettings();
+	    skillsSettings = GetSkillsSettings();
+	    skillStonesSettings = GetSkillStonesSettings();
+	}	
+
+	#region 아이템 목록 얻기
+	public DropItemsSettingsZone0101 GetDropItemsSettingsZone0101() {
+		XmlSerializer x = new XmlSerializer(typeof(DropItemsSettingsZone0101));
+		DropItemsSettingsZone0101 ds = null;
+//		FileStream stream = File.Open(ResourcePath + "DropItemsSettingsZone0101.xml", FileMode.Open);
+//		DropItemsSettingsZone0101 ds = (DropItemsSettingsZone0101)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "DropItemsSettingsZone0101.xml", FileMode.Open))
+		{
+			ds = (DropItemsSettingsZone0101)x.Deserialize(stream);
+		}
+		return ds;
+	}
+
+	public EnemiesSettings GetEnemiesSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(EnemiesSettings));
+		EnemiesSettings es = null;
+//		FileStream stream = File.Open(ResourcePath + "EnemiesSettings.xml", FileMode.Open);
+//		EnemiesSettings es = (EnemiesSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "EnemiesSettings.xml", FileMode.Open))
+		{
+			es = (EnemiesSettings)x.Deserialize(stream);
+		}
+		return es;
+	}
+
+	public ItemCostumesSettings GetItemCostumesSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(ItemCostumesSettings));
+		ItemCostumesSettings ic = null;
+//		FileStream stream = File.Open(ResourcePath + "ItemCostumesSettings.xml", FileMode.Open);
+//		ItemCostumesSettings ic = (ItemCostumesSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "ItemCostumesSettings.xml", FileMode.Open))
+		{
+			ic = (ItemCostumesSettings)x.Deserialize(stream);
+		}
+		return ic;
+	}
+
+	public ItemEtcsSettings GetItemEtcsSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(ItemEtcsSettings));
+		ItemEtcsSettings ie = null;
+//		FileStream stream = File.Open(ResourcePath + "ItemEtcsSettings.xml", FileMode.Open);
+//		ItemEtcsSettings ie = (ItemEtcsSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "ItemEtcsSettings.xml", FileMode.Open))
+		{
+			ie = (ItemEtcsSettings)x.Deserialize(stream);
+		}
+		return ie;
+	}
+
+	public ItemPuzzlePiecesSettings GetItemPuzzlePiecesSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(ItemPuzzlePiecesSettings));
+		ItemPuzzlePiecesSettings ip = null;
+//		FileStream stream = File.Open(ResourcePath + "ItemPuzzlePiecesSettings.xml", FileMode.Open);
+//		ItemPuzzlePiecesSettings ip = (ItemPuzzlePiecesSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "ItemPuzzlePiecesSettings.xml", FileMode.Open))
+		{
+			ip = (ItemPuzzlePiecesSettings)x.Deserialize(stream);
+		}
+		return ip;
+	}
+
+	public ItemSkillStonesSettings GetItemSkillStonesSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(ItemSkillStonesSettings));
+		ItemSkillStonesSettings iss = null;
+//		FileStream stream = File.Open(ResourcePath + "ItemSkillStonesSettings.xml", FileMode.Open);
+//		ItemSkillStonesSettings iss = (ItemSkillStonesSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "ItemSkillStonesSettings.xml", FileMode.Open))
+		{
+			iss = (ItemSkillStonesSettings)x.Deserialize(stream);
+		}
+		return iss;
+	}
+
+	public ItemWarfStonesSettings GetItemWarfStonesSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(ItemWarfStonesSettings));
+		ItemWarfStonesSettings iws = null;
+//		FileStream stream = File.Open(ResourcePath + "ItemWarfStonesSettings.xml", FileMode.Open);
+//		ItemWarfStonesSettings iws = (ItemWarfStonesSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "ItemWarfStonesSettings.xml", FileMode.Open))
+		{
+			iws = (ItemWarfStonesSettings)x.Deserialize(stream);
+		}
+		return iws;
+	}
+
+	public ItemWeaponsSettings GetItemWeaponsSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(ItemWeaponsSettings));
+		ItemWeaponsSettings iws = null;
+//		FileStream stream = File.Open(ResourcePath + "ItemWeaponsSettings.xml", FileMode.Open);
+//		ItemWeaponsSettings iws = (ItemWeaponsSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "ItemWeaponsSettings.xml", FileMode.Open))
+		{
+			iws = (ItemWeaponsSettings)x.Deserialize(stream);
+		}
+		return iws;
+	}
+
+	public ItemWeaponStrengthenStonesSettings GetItemWeaponStrengthenStonesSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(ItemWeaponStrengthenStonesSettings));
+		ItemWeaponStrengthenStonesSettings iws = null;
+//		FileStream stream = File.Open(ResourcePath + "ItemWeaponStrengthenStonesSettings.xml", FileMode.Open);
+//		ItemWeaponStrengthenStonesSettings iws = (ItemWeaponStrengthenStonesSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "ItemWeaponStrengthenStonesSettings.xml", FileMode.Open))
+		{
+			iws = (ItemWeaponStrengthenStonesSettings)x.Deserialize(stream);
+		}
+		return iws;
+	}
+
+	public PlayerLevelsSettings GetPlayerLevelsSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(PlayerLevelsSettings));
+		PlayerLevelsSettings pls = null;
+//		FileStream stream = File.Open(ResourcePath + "PlayerLevelsSettings.xml", FileMode.Open);
+//		PlayerLevelsSettings pls = (PlayerLevelsSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "PlayerLevelsSettings.xml", FileMode.Open))
+		{
+			pls = (PlayerLevelsSettings)x.Deserialize(stream);
+		}
+		return pls;
+	}
+
+	public PlayersSettings GetPlayersSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(PlayersSettings));
+		PlayersSettings ps = null;
+//		FileStream stream = File.Open(ResourcePath + "PlayersSettings.xml", FileMode.Open);
+//		PlayersSettings ps = (PlayersSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "PlayersSettings.xml", FileMode.Open))
+		{
+			ps = (PlayersSettings)x.Deserialize(stream);
+		}
+		return ps;
+	}
+
+	public PuzzleBasesSettings GetPuzzleBasesSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(PuzzleBasesSettings));
+		PuzzleBasesSettings pbs = null;
+//		FileStream stream = File.Open(ResourcePath + "PuzzleBasesSettings.xml", FileMode.Open);
+//		PuzzleBasesSettings pbs = (PuzzleBasesSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "PuzzleBasesSettings.xml", FileMode.Open))
+		{
+			pbs = (PuzzleBasesSettings)x.Deserialize(stream);
+		}
+		return pbs;
+	}
+
+	public SkillSlotsSettings GetSkillSlotsSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(SkillSlotsSettings));
+		SkillSlotsSettings sss = null;
+//		FileStream stream = File.Open(ResourcePath + "SkillSlotsSettings.xml", FileMode.Open);
+//		SkillSlotsSettings sss = (SkillSlotsSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "SkillSlotsSettings.xml", FileMode.Open))
+		{
+			sss = (SkillSlotsSettings)x.Deserialize(stream);
+		}
+		return sss;
+	}
+
+	public SkillsSettings GetSkillsSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(SkillsSettings));
+		SkillsSettings sss = null;
+//		FileStream stream = File.Open(ResourcePath + "SkillsSettings.xml", FileMode.Open);
+//		SkillsSettings sss = (SkillsSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "SkillsSettings.xml", FileMode.Open))
+		{
+			sss = (SkillsSettings)x.Deserialize(stream);
+		}
+		return sss;
+	}
+
+	public SkillStonesSettings  GetSkillStonesSettings() {
+		XmlSerializer x = new XmlSerializer(typeof(SkillStonesSettings));
+		SkillStonesSettings sss = null;
+//		FileStream stream = File.Open(ResourcePath + "SkillStonesSettings.xml", FileMode.Open);
+//		SkillStonesSettings sss = (SkillStonesSettings)x.Deserialize(stream);
+		using (FileStream stream = File.Open(ResourcePath + "SkillStonesSettings.xml", FileMode.Open))
+		{
+			sss = (SkillStonesSettings)x.Deserialize(stream);
+		}
+		return sss;
+	}
+	#endregion
+
+	#region 특정 아이템 얻기
+	
+	public DropItemsSettingsDropItemZone0101 GetDropItemsSettingsDropItemZone0101(string index) {
+		var dropItem = dropItemsSettingsZone0101.Items.Where(
+			item => item.Index.Equals(index)).FirstOrDefault();
+	    return dropItem;
+	}
+
+	public EnemiesSettingsEnemy GetEnemiesSettingsEnemy(string name) {
+	    var enemy = enemiesSettings.Items.Where(
+			item => item.Name.Equals(name)).FirstOrDefault();
+	    return enemy;
+	}
+
+	public ItemCostumesSettingsItemCostume GetItemCostumesSettingsItemCostume(string index) {
+	    var itemCostume = itemCostumesSettings.Items.Where(
+			item => item.Index.Equals(index)).FirstOrDefault();
+	    return itemCostume;
+	}
+
+	public ItemEtcsSettingsItemEtc GetItemEtcsSettingsItemEtc(string index) {
+	    var itemEtc = itemEtcsSettings.Items.Where(
+			item => item.Index.Equals(index)).FirstOrDefault();
+	    return itemEtc;
+	}
+
+	public ItemPuzzlePiecesSettingsItemPuzzlePiece GetItemPuzzlePiecesSettingsItemPuzzlePiece(string index) {
+		var itemPuzzle = itemPuzzlePiecesSettings.Items.Where(
+			item => item.Index.Equals(index)).FirstOrDefault();
+	    return itemPuzzle;
+	}
+
+	public ItemSkillStonesSettingsItemSkillStone GetItemSkillStonesSettingsItemSkillStone(string index) {
+		var itemSkill = itemSkillStonesSettings.Items.Where(
+			item => item.Index.Equals(index)).FirstOrDefault();
+	    return itemSkill;
+	}	
+
+	public ItemWarfStonesSettingsItemWarfStone GetItemWarfStonesSettingsItemWarfStone(string index) {
+		var itemWarf = itemWarfStonesSettings.Items.Where(
+			item => item.Index.Equals(index)).FirstOrDefault();
+	    return itemWarf;
+	}
+
+	public ItemWeaponsSettingsItemWeapon GetItemWeaponsSettingsItemWeapon(string index) {
+		var itemWeapon = itemWeaponsSettings.Items.Where(
+			item => item.Index.Equals(index)).FirstOrDefault();
+	    return itemWeapon;
+	}
+
+	public ItemWeaponStrengthenStonesSettingsItemWeaponStrengthenStone GetItemWeaponStrengthenStonesSettingsItemWeaponStrengthenStone(string index) {
+		var itemWeaponStrengthenStones = itemWeaponStrengthenStonesSettings.Items.Where(
+			item => item.Index.Equals(index)).FirstOrDefault();
+	    return itemWeaponStrengthenStones;
+	}
+
+	public PlayerLevelsSettingsPlayerLevel GetPlayerLevelsSettingsPlayerLevel(string name) {
+		var playerLevel = playerLevelsSettings.Items.Where(
+			item => item.Name.Equals(name)).FirstOrDefault();
+	    return playerLevel;
+	}
+
+	public PlayersSettingsPlayer GetPlayersSettingsPlayer(string name) {
+		var player = playersSettings.Items.Where(
+			item => item.Name.Equals(name)).FirstOrDefault();
+	    return player;
+	}
+
+	public PuzzleBasesSettingsPuzzleBase GetPuzzleBasesSettingsPuzzleBase(string index) {
+		var puzzleBase = puzzleBasesSettings.Items.Where(
+			item => item.Index.Equals(index)).FirstOrDefault();
+	    return puzzleBase;
+	}
+	
+	public SkillSlotsSettingsSkillSlot GetSkillSlotsSettingsSkillSlot(string index) {
+		var skillSlot = skillSlotsSettings.Items.Where(
+			item => item.Index.Equals(index)).FirstOrDefault();
+	    return skillSlot;
+	}
+	
+	public SkillsSettingsSkill GetSkillsSettingsSkill(string index) {
+		var skil = skillsSettings.Items.Where(
+			item => item.Index.Equals(index)).FirstOrDefault();
+	    return skil;
+	}
+	
+	public SkillStonesSettingsSkillStone GetSkillStonesSettingsSkillStone(string index) {
+		var skillStone = skillStonesSettings.Items.Where(
+			item => item.Index.Equals(index)).FirstOrDefault();
+	    return skillStone;
+	}
+	
+	#endregion
+	
+	public XmlDataType FindItemType(string name) {
+		XmlDataType temp_type = (XmlDataType)Enum.Parse(typeof(XmlDataType), name.Substring(0, 3));
+		return temp_type;
+	}
+	
+	public XmlData GetFindItem(string index) {
+		XmlDataType temp_type = FindItemType(index);
+		XmlData xml_data = null;
+		switch (temp_type) {
+		case XmlDataType.DRP:
+			if (currentLocationInfo == CurrentLocationInfo.Zone1_1) {
+				xml_data = (DropItemsSettingsDropItemZone0101)GetDropItemsSettingsDropItemZone0101(index);
+			}
+			break;
+			
+		case XmlDataType.MOB:
+			xml_data = (EnemiesSettingsEnemy)GetEnemiesSettingsEnemy(index);
+			break;
+			
+		case XmlDataType.COS:
+			xml_data = (ItemCostumesSettingsItemCostume)GetItemCostumesSettingsItemCostume(index);
+			break;
+			
+		case XmlDataType.ETC:
+			xml_data = (ItemEtcsSettingsItemEtc)GetItemEtcsSettingsItemEtc(index);
+			break;
+			
+		case XmlDataType.PUZ:
+			xml_data = (ItemPuzzlePiecesSettingsItemPuzzlePiece)GetItemPuzzlePiecesSettingsItemPuzzlePiece(index);
+			break;
+		
+		case XmlDataType.SKS:
+			xml_data = (ItemSkillStonesSettingsItemSkillStone)GetItemSkillStonesSettingsItemSkillStone(index);
+			break;
+			
+		case XmlDataType.WAF:
+			xml_data = (ItemWarfStonesSettingsItemWarfStone)GetItemWarfStonesSettingsItemWarfStone(index);
+			break;
+			
+		case XmlDataType.WPN:
+			xml_data = (ItemWeaponsSettingsItemWeapon)GetItemWeaponsSettingsItemWeapon(index);
+			break;
+			
+		case XmlDataType.WUS:
+			xml_data = (ItemWeaponStrengthenStonesSettingsItemWeaponStrengthenStone)GetItemWeaponStrengthenStonesSettingsItemWeaponStrengthenStone(index);
+			break;
+			
+		case XmlDataType.PUB:
+			xml_data = (PuzzleBasesSettingsPuzzleBase)GetPuzzleBasesSettingsPuzzleBase(index);
+			break;
+			
+		default:
+		break;			
+		}
+		
+		return xml_data;
+	}
+}
