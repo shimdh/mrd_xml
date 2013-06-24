@@ -14,6 +14,8 @@ public enum XmlDataType
 , //BossSkillsSettings
 	COB
 , //CostumeBasesSettings
+	DRY
+, // DiariesSettings
 	DRP
 , // DropItemsSettings
 	MOB
@@ -67,6 +69,7 @@ public class GetXmlData
 	public AIsSettings aIsSettings;
 	public BossSkillsSettings bossSkillsSettings;
 	public CostumeBasesSettings costumeBasesSettings;
+	public DiariesSettings diariesSettings;
 	public DropItemsSettingsZone0101 dropItemsSettingsZone0101;
 	public DropItemsSettingsZone0102 dropItemsSettingsZone0102;
 	public DropItemsSettingsZone0103 dropItemsSettingsZone0103;
@@ -92,6 +95,7 @@ public class GetXmlData
 	public TextAsset aIsSettingsText;
 	public TextAsset bossSkillsSettingsText;
 	public TextAsset costumeBasesSettingsText;
+	public TextAsset diariesSettingsText;
 	public TextAsset dropItemsSettingsZone0101Text;
 	public TextAsset dropItemsSettingsZone0102Text;
 	public TextAsset dropItemsSettingsZone0103Text;
@@ -122,6 +126,7 @@ public class GetXmlData
 		aIsSettingsText = GetXmlTextAsset ("AIsSettings");
 		bossSkillsSettingsText = GetXmlTextAsset ("BossSkillsSettings");
 		costumeBasesSettingsText = GetXmlTextAsset ("CostumeBasesSettings");
+		diariesSettingsText = GetXmlTextAsset ("DiariesSettings");
 		dropItemsSettingsZone0101Text = GetXmlTextAsset ("DropItemsSettingsZone0101");
 		dropItemsSettingsZone0102Text = GetXmlTextAsset ("DropItemsSettingsZone0102");
 		dropItemsSettingsZone0103Text = GetXmlTextAsset ("DropItemsSettingsZone0103");
@@ -162,6 +167,7 @@ public class GetXmlData
 		aIsSettings = GetAIsSettings ();
 		bossSkillsSettings = GetBossSkillsSettings ();
 		costumeBasesSettings = GetCostumeBasesSettings ();
+		diariesSettings = GetDiariesSettings ();
 		dropItemsSettingsZone0101 = GetDropItemsSettingsZone0101 ();
 		dropItemsSettingsZone0102 = GetDropItemsSettingsZone0102 ();
 		dropItemsSettingsZone0103 = GetDropItemsSettingsZone0103 ();
@@ -215,6 +221,16 @@ public class GetXmlData
 		CostumeBasesSettings cbs = null;
 		using (MemoryStream stream = new MemoryStream(costumeBasesSettingsText.bytes)) {
 			cbs = (CostumeBasesSettings)x.Deserialize (stream);
+		}
+		return cbs;
+	}
+
+	public DiariesSettings GetDiariesSettings ()
+	{
+		XmlSerializer x = new XmlSerializer (typeof(DiariesSettings));
+		DiariesSettings cbs = null;
+		using (MemoryStream stream = new MemoryStream(diariesSettingsText.bytes)) {
+			cbs = (DiariesSettings)x.Deserialize (stream);
 		}
 		return cbs;
 	}
@@ -443,6 +459,13 @@ public class GetXmlData
 		return costumeBase;
 	}
 
+	public DiariesSettingsDiary GetDiariesSettingsDiary (string index)
+	{
+		var diary = diariesSettings.Items.Where (
+			item => item.Index.Equals (index)).FirstOrDefault ();
+		return diary;
+	}
+
 	public DropItemsSettingsDropItemZone0101 GetDropItemsSettingsDropItemZone0101 (string index)
 	{
 		var dropItem = dropItemsSettingsZone0101.Items.Where (
@@ -605,6 +628,10 @@ public class GetXmlData
 
 		case XmlDataType.COB:
 			xml_data = (CostumeBasesSettingsCostumeBase)GetCostumeBasesSettingsCostumeBase (index);
+			break;
+
+		case XmlDataType.DRY:
+			xml_data = (DiariesSettingsDiary)GetDiariesSettingsDiary (index);
 			break;
 
 		case XmlDataType.DRP:

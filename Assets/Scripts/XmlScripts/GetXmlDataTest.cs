@@ -33,6 +33,13 @@ public class GetXmlDataTest : UUnitTestCase
 	}
 
 	[UUnitTest]
+	public void TestDiarisSettings ()
+	{
+		UUnitAssert.Equals ("낯선 곳.. 그리고 타라",
+		                    getXmlData.diariesSettings.Items [0].Name);
+	}
+
+	[UUnitTest]
 	public void TestDropItemsSettingsZone0101 ()
 	{
 		UUnitAssert.Equals ("WUS_001",
@@ -167,6 +174,14 @@ public class GetXmlDataTest : UUnitTestCase
 		UUnitAssert.Equals (0.0,
 		                    getXmlData.GetCostumeBasesSettingsCostumeBase (
 			"COB_001").Cash);
+	}
+
+	[UUnitTest]
+	public void TestDiariesSettingsDiary ()
+	{
+		UUnitAssert.Equals ("낯선 곳.. 그리고 타라",
+		                    getXmlData.GetDiariesSettingsDiary (
+			"DRY_001").Name);
 	}
 
 	[UUnitTest]
