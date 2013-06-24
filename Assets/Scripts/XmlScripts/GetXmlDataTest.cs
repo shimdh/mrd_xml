@@ -42,7 +42,7 @@ public class GetXmlDataTest : UUnitTestCase
 	[UUnitTest]
 	public void TestEnemiesSettings ()
 	{
-		UUnitAssert.Equals (3.0,
+		UUnitAssert.Equals (1.0,
 		                    getXmlData.enemiesSettings.Items [0].Level);
 	}
 
@@ -180,7 +180,7 @@ public class GetXmlDataTest : UUnitTestCase
 	[UUnitTest]
 	public void TestEnemiesSettingsEnemy ()
 	{
-		UUnitAssert.Equals (3.0,
+		UUnitAssert.Equals (1.0,
 		                    getXmlData.GetEnemiesSettingsEnemy (
 			"MOB_B01").Level);
 	}
@@ -236,7 +236,7 @@ public class GetXmlDataTest : UUnitTestCase
 	[UUnitTest]
 	public void TestItemWeaponStrengthenStonesSettingsItemWeaponStrengthenStone ()
 	{
-		UUnitAssert.Equals ("폭력성 1단계",
+		UUnitAssert.Equals ("공격성",
 		                    getXmlData.GetItemWeaponStrengthenStonesSettingsItemWeaponStrengthenStone (
 			"WUS_001").Name);
 	}
@@ -268,7 +268,7 @@ public class GetXmlDataTest : UUnitTestCase
 	[UUnitTest]
 	public void TestSkillSlotsSettingsSkillSlot ()
 	{
-		UUnitAssert.Equals ("광역 1번째 슬롯",
+		UUnitAssert.Equals ("회복구슬 슬롯",
 		                    getXmlData.GetSkillSlotsSettingsSkillSlot (
 			"SLT_A01").Name);
 	}
@@ -322,7 +322,7 @@ public class GetXmlDataTest : UUnitTestCase
 		var enemySetting = getXmlData.enemiesSettings.Items [0];
 		var enemyProperty = enemySetting.GetType ().GetProperty ("Level");
 		var enemyValue = enemyProperty.GetValue (enemySetting, null);
-		UUnitAssert.Equals (3.0, (float)enemyValue);
+		UUnitAssert.Equals (1.0, (float)enemyValue);
 	}
 
 	[UUnitTest]

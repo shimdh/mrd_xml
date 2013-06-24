@@ -52,6 +52,10 @@ public enum CurrentLocationInfo
 ,
 	Zone1_3
 ,
+	Zone1_4
+,
+	Zone2_1
+,
 }
 
 public class GetXmlData
@@ -64,6 +68,10 @@ public class GetXmlData
 	public BossSkillsSettings bossSkillsSettings;
 	public CostumeBasesSettings costumeBasesSettings;
 	public DropItemsSettingsZone0101 dropItemsSettingsZone0101;
+	public DropItemsSettingsZone0102 dropItemsSettingsZone0102;
+	public DropItemsSettingsZone0103 dropItemsSettingsZone0103;
+	public DropItemsSettingsZone0104 dropItemsSettingsZone0104;
+	public DropItemsSettingsZone0201 dropItemsSettingsZone0201;
 	public EnemiesSettings enemiesSettings;
 	public ItemCostumesSettings itemCostumesSettings;
 	public ItemEtcsSettings itemEtcsSettings;
@@ -85,6 +93,10 @@ public class GetXmlData
 	public TextAsset bossSkillsSettingsText;
 	public TextAsset costumeBasesSettingsText;
 	public TextAsset dropItemsSettingsZone0101Text;
+	public TextAsset dropItemsSettingsZone0102Text;
+	public TextAsset dropItemsSettingsZone0103Text;
+	public TextAsset dropItemsSettingsZone0104Text;
+	public TextAsset dropItemsSettingsZone0201Text;
 	public TextAsset enemiesSettingsText;
 	public TextAsset itemCostumesSettingsText;
 	public TextAsset itemEtcsSettingsText;
@@ -111,6 +123,10 @@ public class GetXmlData
 		bossSkillsSettingsText = GetXmlTextAsset ("BossSkillsSettings");
 		costumeBasesSettingsText = GetXmlTextAsset ("CostumeBasesSettings");
 		dropItemsSettingsZone0101Text = GetXmlTextAsset ("DropItemsSettingsZone0101");
+		dropItemsSettingsZone0102Text = GetXmlTextAsset ("DropItemsSettingsZone0102");
+		dropItemsSettingsZone0103Text = GetXmlTextAsset ("DropItemsSettingsZone0103");
+		dropItemsSettingsZone0104Text = GetXmlTextAsset ("DropItemsSettingsZone0104");
+		dropItemsSettingsZone0201Text = GetXmlTextAsset ("DropItemsSettingsZone0201");
 		enemiesSettingsText = GetXmlTextAsset ("EnemiesSettings");
 		itemCostumesSettingsText = GetXmlTextAsset ("ItemCostumesSettings");
 		itemEtcsSettingsText = GetXmlTextAsset ("ItemEtcsSettings");
@@ -147,6 +163,10 @@ public class GetXmlData
 		bossSkillsSettings = GetBossSkillsSettings ();
 		costumeBasesSettings = GetCostumeBasesSettings ();
 		dropItemsSettingsZone0101 = GetDropItemsSettingsZone0101 ();
+		dropItemsSettingsZone0102 = GetDropItemsSettingsZone0102 ();
+		dropItemsSettingsZone0103 = GetDropItemsSettingsZone0103 ();
+		dropItemsSettingsZone0104 = GetDropItemsSettingsZone0104 ();
+		dropItemsSettingsZone0201 = GetDropItemsSettingsZone0201 ();
 
 		enemiesSettings = GetEnemiesSettings ();
 
@@ -205,6 +225,46 @@ public class GetXmlData
 		DropItemsSettingsZone0101 ds = null;
 		using (MemoryStream stream = new MemoryStream(dropItemsSettingsZone0101Text.bytes)) {
 			ds = (DropItemsSettingsZone0101)x.Deserialize (stream);
+		}
+		return ds;
+	}
+
+	public DropItemsSettingsZone0102 GetDropItemsSettingsZone0102 ()
+	{
+		XmlSerializer x = new XmlSerializer (typeof(DropItemsSettingsZone0102));
+		DropItemsSettingsZone0102 ds = null;
+		using (MemoryStream stream = new MemoryStream(dropItemsSettingsZone0102Text.bytes)) {
+			ds = (DropItemsSettingsZone0102)x.Deserialize (stream);
+		}
+		return ds;
+	}
+
+	public DropItemsSettingsZone0103 GetDropItemsSettingsZone0103 ()
+	{
+		XmlSerializer x = new XmlSerializer (typeof(DropItemsSettingsZone0103));
+		DropItemsSettingsZone0103 ds = null;
+		using (MemoryStream stream = new MemoryStream(dropItemsSettingsZone0103Text.bytes)) {
+			ds = (DropItemsSettingsZone0103)x.Deserialize (stream);
+		}
+		return ds;
+	}
+
+	public DropItemsSettingsZone0104 GetDropItemsSettingsZone0104 ()
+	{
+		XmlSerializer x = new XmlSerializer (typeof(DropItemsSettingsZone0104));
+		DropItemsSettingsZone0104 ds = null;
+		using (MemoryStream stream = new MemoryStream(dropItemsSettingsZone0104Text.bytes)) {
+			ds = (DropItemsSettingsZone0104)x.Deserialize (stream);
+		}
+		return ds;
+	}
+
+	public DropItemsSettingsZone0201 GetDropItemsSettingsZone0201 ()
+	{
+		XmlSerializer x = new XmlSerializer (typeof(DropItemsSettingsZone0201));
+		DropItemsSettingsZone0201 ds = null;
+		using (MemoryStream stream = new MemoryStream(dropItemsSettingsZone0201Text.bytes)) {
+			ds = (DropItemsSettingsZone0201)x.Deserialize (stream);
 		}
 		return ds;
 	}
@@ -390,6 +450,34 @@ public class GetXmlData
 		return dropItem;
 	}
 
+	public DropItemsSettingsDropItemZone0102 GetDropItemsSettingsDropItemZone0102 (string index)
+	{
+		var dropItem = dropItemsSettingsZone0102.Items.Where (
+			item => item.Index.Equals (index)).FirstOrDefault ();
+		return dropItem;
+	}
+
+	public DropItemsSettingsDropItemZone0103 GetDropItemsSettingsDropItemZone0103 (string index)
+	{
+		var dropItem = dropItemsSettingsZone0103.Items.Where (
+			item => item.Index.Equals (index)).FirstOrDefault ();
+		return dropItem;
+	}
+
+	public DropItemsSettingsDropItemZone0104 GetDropItemsSettingsDropItemZone0104 (string index)
+	{
+		var dropItem = dropItemsSettingsZone0104.Items.Where (
+			item => item.Index.Equals (index)).FirstOrDefault ();
+		return dropItem;
+	}
+
+	public DropItemsSettingsDropItemZone0201 GetDropItemsSettingsDropItemZone0201 (string index)
+	{
+		var dropItem = dropItemsSettingsZone0201.Items.Where (
+			item => item.Index.Equals (index)).FirstOrDefault ();
+		return dropItem;
+	}
+
 	public EnemiesSettingsEnemy GetEnemiesSettingsEnemy (string name)
 	{
 		var enemy = enemiesSettings.Items.Where (
@@ -522,6 +610,14 @@ public class GetXmlData
 		case XmlDataType.DRP:
 			if (currentLocationInfo == CurrentLocationInfo.Zone1_1) {
 				xml_data = (DropItemsSettingsDropItemZone0101)GetDropItemsSettingsDropItemZone0101 (index);
+			} else if (currentLocationInfo == CurrentLocationInfo.Zone1_2) {
+				xml_data = (DropItemsSettingsDropItemZone0102)GetDropItemsSettingsDropItemZone0102 (index);
+			} else if (currentLocationInfo == CurrentLocationInfo.Zone1_3) {
+				xml_data = (DropItemsSettingsDropItemZone0103)GetDropItemsSettingsDropItemZone0103 (index);
+			} else if (currentLocationInfo == CurrentLocationInfo.Zone1_4) {
+				xml_data = (DropItemsSettingsDropItemZone0104)GetDropItemsSettingsDropItemZone0104 (index);
+			} else if (currentLocationInfo == CurrentLocationInfo.Zone2_1) {
+				xml_data = (DropItemsSettingsDropItemZone0201)GetDropItemsSettingsDropItemZone0201 (index);
 			}
 			break;
 
